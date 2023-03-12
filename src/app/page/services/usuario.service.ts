@@ -1,7 +1,7 @@
+import { Usuario } from './../models/usuario';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Usuario } from '../models/usuario';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -15,9 +15,9 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  login(usaurio: Usuario): Observable<any> {
+  login(usuario: Usuario): Observable<any> {
     //console.log(this.url);
-    return this.http.post(this.url, usaurio, { observe: 'response' })
+    return this.http.post(this.url, usuario, { observe: 'response' })
       .pipe(map(res => {
 
         //console.log('res -> ' + JSON.stringify(res));
@@ -25,7 +25,10 @@ export class UsuarioService {
 
         const token = res.headers.get('authorization') || '';
 
+        const usuarion = usuario.userName;
         //console.log('authorization token -> ' + token);
+
+        sessionStorage.setItem('nombreUsuario', usuarion);
 
         sessionStorage.setItem('token', token); /// Session Storage y Local Storage
 

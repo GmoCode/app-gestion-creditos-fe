@@ -53,9 +53,15 @@ cliente: Cliente = {};
 
   categories: Category[] = [];
 
+  nombreUsuario:any = {};
+
   rowsPerPageOptions = [5, 10, 20];
 
-  constructor(private clienteService: ClienteService ,private creditoService: CreditoService, private productoService: ProductoService, private categoryService: CategoryService, private messageService: MessageService) { }
+  constructor(private clienteService: ClienteService ,private creditoService: CreditoService, private productoService: ProductoService, private categoryService: CategoryService, private messageService: MessageService) {
+
+
+
+  }
 
   ngOnInit() {
 
@@ -67,6 +73,9 @@ cliente: Cliente = {};
         this.buscarProductos();
 
         this.buscarClientes();
+
+        this.obtenerSesionStorage();
+
 
         }
 
@@ -86,6 +95,14 @@ cliente: Cliente = {};
         }
 
         )
+    }
+
+    obtenerSesionStorage(){
+
+        const usuarioLogin = sessionStorage.getItem('nombreUsuario');
+        console.log(usuarioLogin);
+        this.nombreUsuario = usuarioLogin;
+
     }
 
     buscarProductos() {
@@ -183,10 +200,46 @@ cliente: Cliente = {};
   }
 
   saveProduct() {
-      this.submitted = true;
+    console.log(this.credito)
 
+    this.submitted = true;
 
-  }
+    if(this.credito.idPaymentOut){
+
+    this.clienteService.registrar(this.credito).subscribe(
+            {
+            next: (res) =>{
+            console.log('Registro Ok');
+            this.messageService.add({ severity: 'success', summary: '¡ Éxito !', detail: 'Cliente Actualizado Exitosamente', life: 4000 });
+            //this.msgExito();
+            this.productDialog = false;
+            this.credito = {};
+            this.buscar();
+            },
+            error:() =>{
+            //this.msgError()
+            }
+        }
+        )
+    } else {
+        this.clienteService.registrar(this.credito).subscribe(
+            {
+            next: (res) =>{
+                console.log('Registro Ok');
+                this.messageService.add({ severity: 'success', summary: '¡ Éxito !', detail: 'Cliente Creado Exitosamente', life: 4000 });
+                //this.msgExito();
+                this.productDialog = false;
+                this.credito = {};
+                this.buscar();
+            },
+            error:() =>{
+                //this.msgError()
+            }
+            }
+        )
+    }
+
+    }
 
   findIndexById(id: number): number {
       let index = -1;

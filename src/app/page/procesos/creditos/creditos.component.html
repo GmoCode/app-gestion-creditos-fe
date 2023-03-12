@@ -116,7 +116,7 @@
 
                             <div class="field col-12 md:col-12">
                                 <label for="status">Inventory Status</label>
-                                <p-dropdown [(ngModel)]="product" inputId="product" optionValue="idProduct" optionLabel="nameProduct" [options]="products" placeholder="Select">
+                                <p-dropdown [(ngModel)]="credito.product" inputId="product" optionValue="" optionLabel="nameProduct" [options]="products" placeholder="Select">
                                     <ng-template let-product pTemplate="selectedItem">
                                         <span >{{product.nameProduct}}</span>
                                     </ng-template>
@@ -126,19 +126,13 @@
                                 </p-dropdown>
                             </div>
                             <div class="field col-12 md:col-12">
-                                <label for="status">Usuarios Status</label>
-                                <p-dropdown [(ngModel)]="usuarios" inputId="Usistema" optionValue="idUser" optionLabel="name" [options]="usuarios" placeholder="Select">
-                                    <ng-template let-usuarios pTemplate="selectedItem">
-                                        <span >{{usuarios.idUser}}</span>
-                                    </ng-template>
-                                    <ng-template let-usuarios pTemplate="item">
-                                        <span>{{usuarios.idUser}}</span>
-                                    </ng-template>
-                                </p-dropdown>
+                                <label for="status">Usuarios</label>
+                                <input type="text" pInputText id="text" [(ngModel)]="nombreUsuario"  class="p-inputtext p-component p-element" disabled=""/>
+
                             </div>
                             <div class="field col-12 md:col-12">
                                 <label for="status">Cliente Status</label>
-                                <p-dropdown [(ngModel)]="cliente" inputId="cliente" optionValue="idClient" optionLabel="firstName" [options]="clientes" placeholder="Select">
+                                <p-dropdown [(ngModel)]="credito.client" inputId="cliente" optionValue="" optionLabel="firstName" [options]="clientes" placeholder="Select">
                                     <ng-template let-cliente pTemplate="selectedItem">
                                         <span >{{cliente.firstName}}</span>
                                     </ng-template>

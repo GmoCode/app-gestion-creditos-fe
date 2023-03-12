@@ -21,6 +21,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {PasswordModule } from 'primeng/password';
 import { AuthInterceptor } from './public/interceptors/auth.interceptor';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -42,6 +45,9 @@ import { AuthInterceptor } from './public/interceptors/auth.interceptor';
     CheckboxModule,
     InputTextModule,
     PasswordModule,
+    MessagesModule,
+    MessageModule,
+    ToastModule,
 
     // Importaciones
     ReactiveFormsModule,

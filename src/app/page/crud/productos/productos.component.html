@@ -96,9 +96,9 @@
         <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Detalles del Producto" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
               <div class="p-formgrid grid">
-                  <div class="field col-12 md:col-12">
-                    <label for="status">Inventory Status</label>
-                    <p-dropdown [(ngModel)]="product" inputId="category" optionValue="idCategory" optionLabel="categoryName" [options]="categories" placeholder="Select">
+                    <div class="field col-12 md:col-12">
+                    <label for="status">Seleccione Categoria</label>
+                    <p-dropdown [(ngModel)]="product.category" inputId="idcategory" optionValue="" optionLabel="categoryName" [options]="categories" placeholder="Seleccione Categoria">
                         <ng-template let-category pTemplate="selectedItem">
                             <span >{{category.categoryName}}</span>
                         </ng-template>
@@ -106,7 +106,24 @@
                             <span>{{category.categoryName}}</span>
                         </ng-template>
                     </p-dropdown>
-                  </div>
+                    </div>
+
+                    <div class="field col-12 md:col-12">
+                        <label for="documento">Nombre Producto</label>
+                        <input type="text" pInputText id="number" [(ngModel)]="product.nameProduct" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.nameProduct}"/>
+                        <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !product.nameProduct">Campo Requerido*</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="documento">Código Producto</label>
+                        <input type="text" pInputText id="number" [(ngModel)]="product.codeProduct" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.codeProduct}"/>
+                        <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !product.codeProduct">Campo Requerido*</small>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="documento">Tása de Interés</label>
+                        <input type="number" pInputText id="number" [(ngModel)]="product.tax" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !product.tax}"/>
+                        <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !product.tax">Campo Requerido*</small>
+                    </div>
+
               </div>
             </ng-template>
 

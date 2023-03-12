@@ -138,7 +138,7 @@ export class ClientesComponent implements OnInit {
       this.buscar();
   }
 
-  saveProduct() {
+saveProduct() {
 console.log(this.client)
 
 this.submitted = true;
@@ -178,7 +178,7 @@ this.clienteService.registrar(this.client).subscribe(
     )
 }
 
-  }
+}
 
   findIndexById(id: number): number {
       let index = -1;

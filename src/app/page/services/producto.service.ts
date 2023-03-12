@@ -17,13 +17,7 @@ export class ProductoService {
     constructor(private http: HttpClient) {
       //super()
     }
-  /*
-    buscar(razonSocial:string):Observable<ICliente[]>{
-      console.log(this.url);
-      const url=`${this.url}/by-razonSocial?razonSocial=${razonSocial}`;
-      console.log(url);
-      return this.http.get<ICliente[]>(url);
-    }*/
+
       buscar():Observable<IProducto[]>{
       console.log(this.url);
       const url=`${this.url}/find-productos`;

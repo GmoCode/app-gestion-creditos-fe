@@ -117,15 +117,53 @@ export class ProductosComponent implements OnInit {
   }
 
   hideDialog() {
-      this.productDialog = false;
-      this.submitted = false;
+    this.productDialog = false;
+    this.submitted = false;
+    this.buscar();
   }
 
   saveProduct() {
-      this.submitted = true;
 
+    console.log(this.product)
 
-  }
+    this.submitted = true;
+
+    if(this.product.idProduct){
+
+    this.productoService.registrar(this.product).subscribe(
+            {
+            next: (res) =>{
+            console.log('Registro Ok');
+            this.messageService.add({ severity: 'success', summary: '¡ Éxito !', detail: 'Cliente Actualizado Exitosamente', life: 4000 });
+            //this.msgExito();
+            this.productDialog = false;
+            this.product = {};
+            this.buscar();
+            },
+            error:() =>{
+            //this.msgError()
+            }
+        }
+        )
+    } else {
+        this.productoService.registrar(this.product).subscribe(
+            {
+            next: (res) =>{
+                console.log('Registro Ok');
+                this.messageService.add({ severity: 'success', summary: '¡ Éxito !', detail: 'Cliente Creado Exitosamente', life: 4000 });
+                //this.msgExito();
+                this.productDialog = false;
+                this.product = {};
+                this.buscar();
+            },
+            error:() =>{
+                //this.msgError()
+            }
+            }
+        )
+    }
+
+    }
 
   findIndexById(id: number): number {
       let index = -1;

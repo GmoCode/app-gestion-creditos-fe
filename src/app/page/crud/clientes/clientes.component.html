@@ -97,24 +97,24 @@
                     <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !client.lastName">Campo Requerido*.</small>
                 </div>
 
-            <div class="field col-12">
-                <label for="email">Correo Electronico: </label>
-                <input type="email" pInputText id="email" pattern=".+@globex\.com" required autofocus [(ngModel)]="client.emailAddress"  [ngClass]="{'ng-invalid ng-dirty' : submitted && !client.emailAddress}"/>
-                <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !client.emailAddress">Campo Requerido*.</small>
-             </div>
+                <div class="field col-12">
+                    <label for="email">Correo Electronico: </label>
+                    <input type="email" pInputText id="email" pattern=".+@globex\.com" required autofocus [(ngModel)]="client.emailAddress"  [ngClass]="{'ng-invalid ng-dirty' : submitted && !client.emailAddress}"/>
+                    <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !client.emailAddress">Campo Requerido*.</small>
+                </div>
 
-             <div class="field col-12 md:col-6">
-                <label for="documento">N° Documento: </label>
-                <input type="text" pInputText id="documento" [(ngModel)]="client.cardId" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !client.cardId}"/>
-                <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !client.cardId">Campo Requerido*</small>
-             </div>
+                <div class="field col-12 md:col-6">
+                    <label for="documento">N° Documento: </label>
+                    <input type="text" pInputText id="documento" [(ngModel)]="client.cardId" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !client.cardId}"/>
+                    <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !client.cardId">Campo Requerido*</small>
+                </div>
 
-             <div class="field col-12 md:col-6">
-                <label for="celular">Celular </label>
-                <input type="text" placeholder="+51" pInputText id="celular" [(ngModel)]="client.phoneNumber" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !client.phoneNumber}"/>
-                <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !client.phoneNumber">Campo Requerido*</small>
-             </div>
-
+                <div class="field col-12 md:col-6">
+                    <label for="celular">Celular </label>
+                    <input type="text" placeholder="+51" pInputText id="celular" [(ngModel)]="client.phoneNumber" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !client.phoneNumber}"/>
+                    <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !client.phoneNumber">Campo Requerido*</small>
+                </div>
+                
             </div>
           </ng-template>
 
