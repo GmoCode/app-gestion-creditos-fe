@@ -1,7 +1,7 @@
-export class Usuario {
-
-  userName!:string;
-  password!:string;
+export class Usistema {
+    idUser?:number;
+  userName?:string;
+  password?:string;
 
   /*
   private usuario!:string

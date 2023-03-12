@@ -56,7 +56,7 @@ export class AppMenuComponent implements OnInit {
                         {
                             label: 'Nuevo Crédito',
                             icon: 'pi pi-fw pi-sign-in',
-                            routerLink: ['/auth/login']
+                            routerLink: ['/page/procesos/creditos']
                         },
                         {
                             label: 'Productos',

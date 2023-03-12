@@ -1,0 +1,190 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card px-6 py-6">
+            <p-toast></p-toast>
+            <p-toolbar styleClass="mb-4">
+                <ng-template pTemplate="left">
+                    <div class="my-2">
+                        <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                        <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedProducts()" [disabled]="!selectedProducts || !selectedProducts.length"></button>
+                    </div>
+                </ng-template>
+
+                <ng-template pTemplate="right">
+                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="mr-2 inline-block"></p-fileUpload>
+                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help" (click)="dt.exportCSV()"></button>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="creditos" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['name','country.name','representative.name','status']" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedProducts" selectionMode="multiple" [rowHover]="true" dataKey="id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        <h5 class="m-0">Administración de Productos</h5>
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."  class="w-full sm:w-auto"/>
+                        </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+
+                        </th>
+                        <th pSortableColumn="code"># <p-sortIcon field="code"></p-sortIcon></th>
+                        <th pSortableColumn="Usuario">Usuario<p-sortIcon field="categoria"></p-sortIcon></th>
+                        <th pSortableColumn="descripcion">D. Cliente<p-sortIcon field="descripcion"></p-sortIcon></th>
+                        <th pSortableColumn="descripcion">Producto<p-sortIcon field="descripcion"></p-sortIcon></th>
+                        <th pSortableColumn="descripcion">T. Interes<p-sortIcon field="descripcion"></p-sortIcon></th>
+                        <th pSortableColumn="descripcion">Credito<p-sortIcon field="descripcion"></p-sortIcon></th>
+                        <th pSortableColumn="descripcion">Cuotas<p-sortIcon field="descripcion"></p-sortIcon></th>
+                        <th pSortableColumn="descripcion">F.Prestamo<p-sortIcon field="descripcion"></p-sortIcon></th>
+                        <th pSortableColumn="descripcion">TOTAL<p-sortIcon field="descripcion"></p-sortIcon></th>
+                        <!--<th>Image</th> -->
+                        <th pSortableColumn="estado">Estado <p-sortIcon field="estado"></p-sortIcon></th>
+                       <!-- <th pSortableColumn="product">Category <p-sortIcon field="product"></p-sortIcon></th> -->
+                      <!-- <th pSortableColumn="rating">Reviews <p-sortIcon field="rating"></p-sortIcon></th> -->
+
+                        <th>
+
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-creditos let-usuarios let-clientes let-products>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td style="width:5%; min-width:1rem;"><span class="p-column-title">#</span>
+                          {{creditos.idPaymentOut}}
+                      </td>
+                        <td style="width:8%; min-width:1rem;"><span class="p-column-title">Categoria</span>
+                            {{creditos.user.userName}}
+                        </td>
+                        <td style="width:13%; min-width:5rem;"><span class="p-column-title">Código</span>
+                            {{creditos.client.firstName}} {{creditos.client.lastName}}
+                        </td>
+                        <td style="width:20%; min-width:5rem;"><span class="p-column-title">Nombre</span>
+                            {{creditos.product.nameProduct}}
+                        </td>
+                        <td style="width:8%; min-width:5rem;"><span class="p-column-title">Tasa</span>
+                            {{creditos.product.tax}} <b>%</b>
+                        </td>
+                        <td style="width:8%; min-width:5rem;"><span class="p-column-title">Nombre</span>
+                           <span [class]="">{{(creditos.currencyType === 'SOLES' ? 'S/. ': '$ ' )}}{{creditos.loamAmount}} </span>
+                        </td>
+                        <td style="width:6.5%; min-width:1rem;"><span class="p-column-title">Nombre</span>
+                            {{creditos.loamTerm}}
+                         </td>
+                         <td style="width:8%; min-width:5rem;"><span class="p-column-title">Tasa</span>
+                            {{creditos.datePaymentOut}}
+                        </td>
+                        <td style="width:8%; min-width:5rem;"><span class="p-column-title">Nombre</span>
+                            <span [class]="">{{(creditos.currencyType === 'SOLES' ? 'S/. ': '$ ' )}}{{creditos.total}} </span>
+                         </td>
+
+                       <!-- <td style="width:14%; min-width:10rem;"><span class="p-column-title">Image</span>
+                            <img [src]="'assets/demo/images/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" />
+                        </td> -->
+                        <td style="width:14%; min-width: 10rem;"><span class="p-column-title">Estado</span>
+                          <span [class]="'product-badge status-' + (creditos.status ? 'instock' : 'outofstock')">{{(creditos.status === '1' ? 'Activo' :'BAJA')}}</span>
+                      </td>
+
+                      <td>
+
+                      </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning mr-2" (click)="editProduct(product)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteProduct(product)"></button>
+                            </div>
+                        </td>
+                    </tr>
+
+                </ng-template>
+            </p-table>
+        </div>
+
+
+        <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Nuevo Desembolso" [modal]="true" class="p-fluid">
+
+            <ng-template pTemplate="content">
+                <!--              <img [src]="'assets/layout/images/logo-dark.svg' + product.image" [alt]="product.image" width="150" class="mt-0 mx-auto mb-5 block shadow-2" *ngIf="product.image"> -->
+
+                            <div class="field col-12 md:col-12">
+                                <label for="status">Inventory Status</label>
+                                <p-dropdown [(ngModel)]="product" inputId="product" optionValue="idProduct" optionLabel="nameProduct" [options]="products" placeholder="Select">
+                                    <ng-template let-product pTemplate="selectedItem">
+                                        <span >{{product.nameProduct}}</span>
+                                    </ng-template>
+                                    <ng-template let-product pTemplate="item">
+                                        <span>{{product.nameProduct}}</span>
+                                    </ng-template>
+                                </p-dropdown>
+                            </div>
+                            <div class="field col-12 md:col-12">
+                                <label for="status">Usuarios Status</label>
+                                <p-dropdown [(ngModel)]="usuarios" inputId="Usistema" optionValue="idUser" optionLabel="name" [options]="usuarios" placeholder="Select">
+                                    <ng-template let-usuarios pTemplate="selectedItem">
+                                        <span >{{usuarios.idUser}}</span>
+                                    </ng-template>
+                                    <ng-template let-usuarios pTemplate="item">
+                                        <span>{{usuarios.idUser}}</span>
+                                    </ng-template>
+                                </p-dropdown>
+                            </div>
+                            <div class="field col-12 md:col-12">
+                                <label for="status">Cliente Status</label>
+                                <p-dropdown [(ngModel)]="cliente" inputId="cliente" optionValue="idClient" optionLabel="firstName" [options]="clientes" placeholder="Select">
+                                    <ng-template let-cliente pTemplate="selectedItem">
+                                        <span >{{cliente.firstName}}</span>
+                                    </ng-template>
+                                    <ng-template let-cliente pTemplate="item">
+                                        <span>{{cliente.firstName}}</span>
+                                    </ng-template>
+                                </p-dropdown>
+                            </div>
+
+                            <div class="p-formgrid grid">
+
+                                </div>
+                                <div class="field col-12">
+                                    <label for="email">MONEDA </label>
+                                    <input type="email" pInputText id="text" pattern=".+@globex\.com" required autofocus [(ngModel)]="credito.currencyType"  [ngClass]="{'ng-invalid ng-dirty' : submitted && !credito.currencyType}"/>
+                                    <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !credito.currencyType">Campo Requerido*.</small>
+                                </div>
+                                <div class="field col-12 md:col-6">
+                                    <label for="documento">Ingrese Credito </label>
+                                    <input type="text" pInputText id="number" [(ngModel)]="credito.loamAmount" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !credito.loamAmount}"/>
+                                    <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !credito.loamAmount">Campo Requerido*</small>
+                                </div>
+                                <div class="field col-12 md:col-6">
+                                    <label for="documento">Cant. Cuotas </label>
+                                    <input type="text" pInputText id="number" [(ngModel)]="credito.loamTerm" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !credito.loamTerm}"/>
+                                    <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !credito.loamTerm">Campo Requerido*</small>
+                                </div>
+
+            </ng-template>
+
+
+            <ng-template pTemplate="footer">
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+            </ng-template>
+        </p-dialog>
+
+        <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+            <div class="flex align-items-center justify-content-center">
+                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+                <span *ngIf="product"> ¿ Estás seguro de eliminar la categoria  <b>"{{product.nameProduct}}"</b> ?</span>
+            </div>
+            <ng-template pTemplate="footer">
+                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteProductDialog = false"></button>
+                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
+            </ng-template>
+        </p-dialog>
+    </div>
+</div>

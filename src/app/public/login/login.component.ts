@@ -22,15 +22,18 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.frmLogin = this.formBuilder.group({
       usuario: ['', [Validators.required, Validators.minLength(5)]],
-      clave: ['', [Validators.required, Validators.minLength(3)]]
+      clave: ['', [Validators.required, Validators.minLength(3)]],
+
     });
 
   }
 
   onSubmit() {
     const login: ILogin = {
+        
       userName: this.f['usuario'].value,
-      password: this.f['clave'].value
+      password: this.f['clave'].value,
+
     };
     //console.log('onSubmit...')
     this.usuarioService.login(login)

@@ -96,7 +96,6 @@
         <p-dialog [(visible)]="productDialog" [style]="{width: '450px'}" header="Detalles del Producto" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
               <div class="p-formgrid grid">
-
                   <div class="field col-12 md:col-12">
                     <label for="status">Inventory Status</label>
                     <p-dropdown [(ngModel)]="product" inputId="category" optionValue="idCategory" optionLabel="categoryName" [options]="categories" placeholder="Select">
@@ -107,9 +106,7 @@
                             <span>{{category.categoryName}}</span>
                         </ng-template>
                     </p-dropdown>
-
                   </div>
-
               </div>
             </ng-template>
 

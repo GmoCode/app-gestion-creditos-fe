@@ -1,3 +1,4 @@
+
 import { CategoriasComponent } from './crud/categorias/categorias.component';
 import { AppMenuComponent } from './../shared/app.menu.component';
 import { PanelComponent } from './panel/panel.component';
@@ -31,6 +32,7 @@ import { ClientesComponent } from './crud/clientes/clientes.component';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { TableModule } from 'primeng/table';
+import { CreditosComponent } from './procesos/creditos/creditos.component';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { TableModule } from 'primeng/table';
         PanelComponent,
         ProductosComponent,
         ClientesComponent,
-        CategoriasComponent
+        CategoriasComponent,
+        CreditosComponent
 
     ],
     imports: [

@@ -6,6 +6,7 @@ import { PageComponent } from './page.component';
 
 import { ClientesComponent } from './crud/clientes/clientes.component';
 import { CategoriasComponent } from './crud/categorias/categorias.component';
+import { CreditosComponent } from './procesos/creditos/creditos.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,11 @@ const routes: Routes = [
         path: "crud/categorias",
         component: CategoriasComponent,
         data: { titulo: "crud/categorias", modulo: "Index" },
+      },
+      {
+        path: "procesos/creditos",
+        component: CreditosComponent,
+        data: { titulo: "procesos/creditos", modulo: "Index" },
       },
       { path: "**", redirectTo: '/notfound' },
     ]
