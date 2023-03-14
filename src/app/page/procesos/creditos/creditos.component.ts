@@ -1,3 +1,4 @@
+import { UsistemaService } from './../../services/usistema.service';
 import { ClienteService } from './../../services/cliente.service';
 import { Cliente } from './../../models/cliente';
 import { CreditoService } from './../../services/credito.service';
@@ -57,7 +58,7 @@ cliente: Cliente = {};
 
   rowsPerPageOptions = [5, 10, 20];
 
-  constructor(private clienteService: ClienteService ,private creditoService: CreditoService, private productoService: ProductoService, private categoryService: CategoryService, private messageService: MessageService) {
+  constructor(private usistemaService: UsistemaService , private clienteService: ClienteService ,private creditoService: CreditoService, private productoService: ProductoService, private categoryService: CategoryService, private messageService: MessageService) {
 
 
 
@@ -73,6 +74,8 @@ cliente: Cliente = {};
         this.buscarProductos();
 
         this.buscarClientes();
+
+        this.buscarUsuarios();
 
         this.obtenerSesionStorage();
 
@@ -125,16 +128,16 @@ cliente: Cliente = {};
 
     buscarUsuarios() {
 
-        this.productoService.buscar().subscribe(
+        this.usistemaService.buscar().subscribe(
         {
             next: (res) => {
-            this.products = res;
+            this.usuarios = res;
             console.log(res)
             //this.pagedItems = this.clientes.slice(0, this.itemsPerPage);
 
             },
             error: () => {
-                console.log('Error al listar Desembolsos')
+                console.log('Error al listar Vendedores')
             }
         }
 
@@ -206,7 +209,7 @@ cliente: Cliente = {};
 
     if(this.credito.idPaymentOut){
 
-    this.clienteService.registrar(this.credito).subscribe(
+    this.creditoService.registrar(this.credito).subscribe(
             {
             next: (res) =>{
             console.log('Registro Ok');
@@ -222,7 +225,7 @@ cliente: Cliente = {};
         }
         )
     } else {
-        this.clienteService.registrar(this.credito).subscribe(
+        this.creditoService.registrar(this.credito).subscribe(
             {
             next: (res) =>{
                 console.log('Registro Ok');

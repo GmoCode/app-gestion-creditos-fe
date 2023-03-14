@@ -2,6 +2,8 @@ export class Usistema {
     idUser?:number;
   userName?:string;
   password?:string;
+  name?:string;
+  status?:string;
 
   /*
   private usuario!:string

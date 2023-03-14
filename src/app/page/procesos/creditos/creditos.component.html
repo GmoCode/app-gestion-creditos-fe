@@ -126,10 +126,22 @@
                                 </p-dropdown>
                             </div>
                             <div class="field col-12 md:col-12">
+                                <label for="status">Analista Status</label>
+                                <p-dropdown [(ngModel)]="credito.user" inputId="user" optionValue="" optionLabel="userName" [options]="usuarios" placeholder="Select">
+                                    <ng-template let-usuario pTemplate="selectedItem">
+                                        <span >{{usuario.userName}}</span>
+                                    </ng-template>
+                                    <ng-template let-usuario pTemplate="item">
+                                        <span>{{usuario.userName}}</span>
+                                    </ng-template>
+                                </p-dropdown>
+                            </div>
+
+                           <!-- <div class="field col-12 md:col-12">
                                 <label for="status">Usuarios</label>
                                 <input type="text" pInputText id="text" [(ngModel)]="nombreUsuario"  class="p-inputtext p-component p-element" disabled=""/>
 
-                            </div>
+                            </div>  -->
                             <div class="field col-12 md:col-12">
                                 <label for="status">Cliente Status</label>
                                 <p-dropdown [(ngModel)]="credito.client" inputId="cliente" optionValue="" optionLabel="firstName" [options]="clientes" placeholder="Select">
@@ -152,12 +164,12 @@
                                 </div>
                                 <div class="field col-12 md:col-6">
                                     <label for="documento">Ingrese Credito </label>
-                                    <input type="text" pInputText id="number" [(ngModel)]="credito.loamAmount" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !credito.loamAmount}"/>
+                                    <input type="number" pInputText id="number" [(ngModel)]="credito.loamAmount" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !credito.loamAmount}"/>
                                     <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !credito.loamAmount">Campo Requerido*</small>
                                 </div>
                                 <div class="field col-12 md:col-6">
                                     <label for="documento">Cant. Cuotas </label>
-                                    <input type="text" pInputText id="number" [(ngModel)]="credito.loamTerm" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !credito.loamTerm}"/>
+                                    <input type="number" pInputText id="number" [(ngModel)]="credito.loamTerm" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !credito.loamTerm}"/>
                                     <small class="ng-dirty ng-invalid p-error" *ngIf="submitted && !credito.loamTerm">Campo Requerido*</small>
                                 </div>
 

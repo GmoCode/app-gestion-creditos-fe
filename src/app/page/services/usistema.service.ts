@@ -1,9 +1,9 @@
-import { IProducto } from '../interfaces/iProducto';
+import { IUsistema } from '../interfaces/IUsistema';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Producto } from '../models/Producto';
+import { Usistema } from '../models/usistema';
 
 
 
@@ -12,7 +12,7 @@ import { Producto } from '../models/Producto';
 })
 export class UsistemaService {
 
-    protected url=`${environment.URL_BASE}/v1/productos`;
+    protected url=`${environment.URL_BASE}/v1/vendedor`;
 
     constructor(private http: HttpClient) {
       //super()
@@ -24,18 +24,18 @@ export class UsistemaService {
       console.log(url);
       return this.http.get<ICliente[]>(url);
     }*/
-      buscar():Observable<IProducto[]>{
+      buscar():Observable<IUsistema[]>{
       console.log(this.url);
-      const url=`${this.url}/find-productos`;
+      const url=`${this.url}/find-vendedores`;
       console.log(url);
-      return this.http.get<IProducto[]>(url);
+      return this.http.get<IUsistema[]>(url);
     }
 
-    buscarXId(id:number):Observable<IProducto>{
+    buscarXId(id:number):Observable<IUsistema>{
       console.log(this.url);
       const url=`${this.url}/${id}`;
       console.log(url);
-      return this.http.get<IProducto>(url);
+      return this.http.get<IUsistema>(url);
     }
 
     buscarXRUC(ruc:string):Observable<any>{
@@ -45,25 +45,25 @@ export class UsistemaService {
       return this.http.get<any>(url);
     }
 
-    insertar(producto:Producto):Observable<Producto>{
+    insertar(usistema:Usistema):Observable<Usistema>{
       console.log(this.url);
-      return this.http.post<Producto>(this.url,producto);
+      return this.http.post<Usistema>(this.url,usistema);
 
     }
 
-    actualizar(id:number,producto:Producto):Observable<Producto>{
+    actualizar(id:number,usistema:Usistema):Observable<Usistema>{
       console.log(this.url);
-      return this.http.put<Producto>(`${this.url}/${id}`,producto);
+      return this.http.put<Usistema>(`${this.url}/${id}`,usistema);
     }
 
-    eliminar(id:number):Observable<Producto>{
+    eliminar(id:number):Observable<Usistema>{
       console.log(this.url);
-      return this.http.delete<Producto>(`${this.url}/${id}`);
+      return this.http.delete<Usistema>(`${this.url}/${id}`);
     }
 
-    registrar(producto:Producto):Observable<Producto>{
+    registrar(usistema:Usistema):Observable<Usistema>{
       const url=`${this.url}`;
-      return this.http.post<Producto>(url,producto);
+      return this.http.post<Usistema>(url,usistema);
     }
 
 }
